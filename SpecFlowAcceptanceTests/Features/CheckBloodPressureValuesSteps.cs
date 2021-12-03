@@ -30,10 +30,33 @@ namespace SpecFlowAcceptanceTests.Features
             };
         }
 
+        [Given(@"user enters (.*) in Age")]
+        public void GivenUserEntersInAge(string value)
+        {
+            int age = Int16.Parse(value);
+            bloodPressure = new BloodPressure
+            {
+                Age = age
+            };
+        }
+
         [Then("the result should be (.*)")]
         public void ThenTheResultShouldBe(string result)
         {
-            Assert.AreEqual(bloodPressure.Category.ToString(), result);
+            Assert.AreEqual(result, bloodPressure.Category.ToString());
         }
+
+
+        [Given(@"Age range should be AgeGroup(.*)")]
+        public void GivenAgeRangeShouldBeAgeGroup(int result)
+        {
+            String results = "AgeGroup" + result;
+            Assert.AreEqual(results, bloodPressure.AgeGroup.ToString());
+        }
+
+
+
+
+
     }
 }

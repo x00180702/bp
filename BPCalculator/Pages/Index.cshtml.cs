@@ -13,14 +13,14 @@ namespace BPCalculator.Pages
         // setup initial data
         public void OnGet()
         {
-            BP = new BloodPressure() { Systolic = 100, Diastolic = 60 };
+            BP = new BloodPressure() { Systolic = 100, Diastolic = 60, Age = 15 };
         }
 
         // POST, validate
         public IActionResult OnPost()
         {
             // extra validation
-            if (BP.Systolic < BP.Diastolic)
+            if (BP.Systolic <= BP.Diastolic)
             {
                 ModelState.AddModelError("", "Systolic must be greater than Diastolic");
             }

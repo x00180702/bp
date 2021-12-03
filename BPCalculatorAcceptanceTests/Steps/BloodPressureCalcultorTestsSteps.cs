@@ -48,6 +48,18 @@ namespace BPCalculatorAcceptanceTests.Steps
             _calculatorPageObject.enterDiastolicNumber(diastolic);
         }
 
+
+
+        [Given(@"the user enters (.*) in the Age field on the Blood Pressure Calcultor Page")]
+        public void GivenTheUserEntersInTheAgeFieldOnTheBloodPressureCalcultorPage(string age)
+        {
+            _calculatorPageObject.enterAgeNumber(age);
+        }
+
+
+
+
+
         [When(@"the clicks on the submit button on the Blood Pressure Calcultor Page")]
         public void WhenTheClicksOnTheSubmitButtonOnTheBloodPressureCalcultorPage()
         {
@@ -88,6 +100,30 @@ namespace BPCalculatorAcceptanceTests.Steps
         public void ThenSystolicMustBeGreaterThanDiastolicMessageIsDiplayedOnTheBloodPressureCalcultorPage()
         {
             string actualValue = _calculatorPageObject.getWarningMessage();
+            Assert.AreEqual("Systolic must be greater than Diastolic", actualValue);
+        }
+
+
+
+        [Then(@"the Mean Arterial Pressure result Low Blood Pressure will be diplayed on the Blood Pressure Calcultor Page")]
+        public void ThenTheMeanArterialPressureResultLowBloodPressureWillBeDiplayedOnTheBloodPressureCalcultorPage()
+        {
+            string actualValue = _calculatorPageObject.getMAPMessage();
+            Assert.AreEqual("Systolic must be greater than Diastolic", actualValue);
+        }
+
+        [Then(@"the Pulse Pressure result Low Blood Pressure will be diplayed on the Blood Pressure Calcultor Page")]
+        public void ThenThePulsePressureResultLowBloodPressureWillBeDiplayedOnTheBloodPressureCalcultorPage()
+        {
+            string actualValue = _calculatorPageObject.getPPMessage();
+            Assert.AreEqual("Systolic must be greater than Diastolic", actualValue);
+        }
+
+
+        [Then(@"the Age Range result Low Blood Pressure will be diplayed on the Blood Pressure Calcultor Page")]
+        public void ThenTheAgeRangeResultLowBloodPressureWillBeDiplayedOnTheBloodPressureCalcultorPage()
+        {
+            string actualValue = _calculatorPageObject.getAgeRangeMessage();
             Assert.AreEqual("Systolic must be greater than Diastolic", actualValue);
         }
 

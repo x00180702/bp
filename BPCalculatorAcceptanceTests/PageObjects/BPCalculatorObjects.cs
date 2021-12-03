@@ -31,11 +31,21 @@ namespace BPCalculatorAcceptanceTests.PageObjects
         //Finding elements by ID
         private IWebElement systolicElement => _webDriver.FindElement(By.CssSelector("input[id='BP_Systolic']"));
         private IWebElement diastolicElement => _webDriver.FindElement(By.CssSelector("input[id='BP_Diastolic']"));
+
+        private IWebElement ageElement => _webDriver.FindElement(By.CssSelector("input[id='BP_Age']"));
+
+
         private IWebElement submitButtonElement => _webDriver.FindElement(By.CssSelector("input[value='Submit']"));
         private IWebElement resultElement => _webDriver.FindElement(By.CssSelector("label[id='results']"));
         private IWebElement ResetButtonElement => _webDriver.FindElement(By.Id("reset-button"));
 
         private IWebElement warningElement => _webDriver.FindElement(By.CssSelector("div[class='text-danger validation-summary-errors'] > ul > li:nth-of-type(1)"));
+
+        private IWebElement ageRangeElement => _webDriver.FindElement(By.XPath("(//label[@id='results'])[2]"));
+
+        private IWebElement mapElement => _webDriver.FindElement(By.XPath("(//label[@id='resultsValue'])[1]"));
+
+        private IWebElement ppElement => _webDriver.FindElement(By.XPath("(//label[@id='resultsValue'])[2]"));
 
 
         public void enterSystolicNumber(string number)
@@ -67,8 +77,15 @@ namespace BPCalculatorAcceptanceTests.PageObjects
             //Clear text box
             diastolicElement.Clear();
 
+        }
 
 
+        public void enterAgeNumber(string number)
+        {
+            //Clear text box
+            ageElement.Clear();
+            //Enter text
+            ageElement.SendKeys(number);
         }
 
         public void clickSubmitButton()
@@ -100,6 +117,25 @@ namespace BPCalculatorAcceptanceTests.PageObjects
         {
             return warningElement.Text;
         }
+
+
+
+        public string getMAPMessage()
+        {
+            return mapElement.Text;
+        }
+
+
+        public string getPPMessage()
+        {
+            return ppElement.Text;
+        }
+
+        public string getAgeRangeMessage()
+        {
+            return ageElement.Text;
+        }
+
 
 
         public void EnsureCalculatorIsOpenAndReset()
